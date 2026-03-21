@@ -1,0 +1,598 @@
+.game-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(2px);
+    box-sizing: border-box;
+}
+
+.game-page.game-active {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(4px);
+}
+
+.game-box {
+    background: #fff;
+    border-radius: 25px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    padding: 60px;
+    width: 100%;
+    min-width: 300px;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    box-sizing: border-box;
+}
+
+.game-title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin: 0;
+    text-align: center;
+    color: #000;
+}
+
+.game-sub {
+    font-size: 1.1rem;
+    color: #444;
+    margin: 0;
+    text-align: center;
+}
+
+.game-input {
+    width: 100%;
+    height: 56px;
+    border: 1.5px solid rgba(0, 0, 0, 0.2);
+    border-radius: 14px;
+    font-size: 1.1rem;
+    padding: 0 20px;
+    outline: none;
+    transition: border 0.15s;
+    box-sizing: border-box;
+    color: #000;
+}
+
+.game-input:focus {
+    border-color: #000;
+}
+
+.game-btn {
+    height: 56px;
+    padding: 0 36px;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.15s ease;
+    width: 100%;
+}
+
+.game-btn.dark {
+    background: #000;
+    color: #fff;
+}
+
+.game-btn.dark:hover {
+    background: #222;
+}
+
+.game-btn.light {
+    background: #fff;
+    color: #111;
+    border: 1.5px solid rgba(0, 0, 0, 0.15);
+}
+
+.game-btn.light:hover {
+    background: #f7f7f7;
+}
+
+.game-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.game-btn:active {
+    transform: scale(0.97);
+}
+
+.name-buttons {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+}
+
+.name-buttons .game-btn.light {
+    flex: 1;
+}
+
+.name-buttons .game-btn.dark {
+    flex: 1.8;
+}
+
+/* Rules */
+.rules-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.rules-list li {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: #111;
+}
+
+kbd {
+    display: inline-block;
+    background: #f0f0f0;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 0.95rem;
+    font-family: monospace;
+    font-weight: 700;
+    color: #111;
+}
+
+/* Keys slide */
+.keys-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+    margin: 8px 0;
+}
+
+.key-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.big-key {
+    width: 100px;
+    height: 100px;
+    background: #000;
+    color: #fff;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: 900;
+    box-shadow: 0 6px 0 #333;
+}
+
+.key-label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #111;
+}
+
+.key-divider {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #aaa;
+}
+
+/* Countdown */
+.countdown-number {
+    font-size: clamp(8rem, 20vw, 16rem);
+    font-weight: 900;
+    color: #111;
+    animation: pop 0.4s ease;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(1.4);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Game top bar */
+.game-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 40px;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.team-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.team-block.right {
+    align-items: flex-end;
+}
+
+.team-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.team-name {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #000;
+    letter-spacing: -0.5px;
+    line-height: 1;
+}
+
+.team-pts {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #000;
+    letter-spacing: -1px;
+    line-height: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pts-flash {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #16a34a;
+    animation: fadeUp 1.5s ease forwards;
+}
+
+@keyframes fadeUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+.key-hint {
+    font-size: 0.95rem;
+    background: #f0f0f0;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    padding: 3px 9px;
+    font-family: monospace;
+    font-weight: 700;
+    color: #111;
+    margin-top: 4px;
+}
+
+.game-timer {
+    font-size: 2.6rem;
+    font-weight: 900;
+    color: #000;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -1px;
+}
+
+/* Task area */
+.task-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    text-align: center;
+    padding-top: 140px;
+}
+
+.task-counter {
+    font-size: 1rem;
+    color: #555;
+    margin: 0;
+    font-weight: 500;
+}
+
+.task-text {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 800;
+    color: #000;
+    max-width: 800px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+/* Done pills */
+.done-indicators {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.done-pill {
+    padding: 10px 24px;
+    border-radius: 50px;
+    background: rgba(0, 0, 0, 0.06);
+    color: #222;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 2px solid rgba(0, 0, 0, 0.12);
+    transition: all 0.2s ease;
+}
+
+.done-pill.done {
+    background: #22c55e;
+    border-color: #16a34a;
+    color: #fff;
+}
+
+/* Finished */
+.winner-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0;
+}
+
+.score-board {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.score-card {
+    flex: 1;
+    background: #f5f5f5;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.score-card.winner {
+    background: #000;
+}
+
+.score-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #111;
+}
+
+.score-pts {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #000;
+}
+
+.score-card.winner .score-name,
+.score-card.winner .score-pts {
+    color: #fff;
+}
+
+/* Guide-style rules screen */
+.guide-box {
+    background: #fff;
+    border-radius: 25px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    padding: 60px;
+    width: 100%;
+    max-width: 980px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.guide-title {
+    font-size: 2.6rem;
+    font-weight: 800;
+    text-align: center;
+    margin: 0 0 42px 0;
+    color: #000;
+}
+
+.guide-rules {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.guide-rule {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.guide-icon {
+    width: 52px;
+    min-width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.flag-icons {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.flag-icon {
+    font-size: 2rem;
+    line-height: 1;
+    display: block;
+}
+
+.flag-icon+.flag-icon {
+    margin-left: -4px;
+}
+
+.guide-text {
+    font-size: 1.15rem;
+    color: #111;
+    line-height: 1.5;
+}
+
+.guide-footer {
+    margin-top: 52px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+.guide-buttons {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.guide-buttons .game-btn.light {
+    flex: 1;
+}
+
+.guide-buttons .game-btn.dark {
+    flex: 1.8;
+}
+
+.guide-progress {
+    font-size: 0.95rem;
+    color: #555;
+    margin: 0;
+}
+
+.chevron {
+    font-size: 22px;
+    line-height: 1;
+}
+
+.end-match-btn {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    height: 52px;
+    padding: 0 22px;
+    border: none;
+    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.88);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    z-index: 20;
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.end-match-btn:hover {
+    background: #000;
+}
+
+.end-match-btn:active {
+    transform: scale(0.97);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .guide-box {
+        padding: 36px 24px;
+    }
+
+    .guide-title {
+        font-size: 2rem;
+    }
+
+    .guide-text {
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .game-page {
+        padding: 18px;
+    }
+
+    .game-box {
+        padding: 32px 20px;
+        max-width: 100%;
+    }
+
+    .guide-box {
+        padding: 32px 20px;
+    }
+
+    .guide-buttons,
+    .name-buttons {
+        flex-direction: column;
+    }
+
+    .keys-display,
+    .score-board,
+    .done-indicators {
+        flex-direction: column;
+    }
+
+    .game-topbar {
+        padding: 12px 16px;
+    }
+
+    .game-timer {
+        font-size: 1.8rem;
+    }
+
+    .team-name {
+        font-size: 1rem;
+    }
+
+    .team-pts {
+        font-size: 1.4rem;
+    }
+
+    .task-area {
+        padding-top: 120px;
+    }
+
+    .task-text {
+        font-size: clamp(1.8rem, 8vw, 3rem);
+    }
+
+    .end-match-btn {
+        right: 16px;
+        bottom: 16px;
+    }
+}
