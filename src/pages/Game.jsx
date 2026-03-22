@@ -609,6 +609,11 @@ export default function Game() {
     setPhase(PHASES.FINISHED);
   };
 
+  const goToStartPage = () => {
+    clearInterval(timerRef.current);
+    navigate("/");
+  };
+
   const formatTime = (s) => {
     const m = Math.floor(s / 60)
       .toString()
@@ -799,11 +804,8 @@ export default function Game() {
             </div>
           </div>
 
-          <button
-            className="game-btn dark"
-            onClick={() => window.location.reload()}
-          >
-            Play Again
+          <button className="game-btn dark" onClick={goToStartPage}>
+            Back to Start
           </button>
         </div>
       </div>
